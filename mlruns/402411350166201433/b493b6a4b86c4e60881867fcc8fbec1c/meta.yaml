@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/402411350166201433/b493b6a4b86c4e60881867fcc8fbec1c/artifacts
+end_time: 1729187387690
+entry_point_name: ''
+experiment_id: '402411350166201433'
+lifecycle_stage: active
+run_id: b493b6a4b86c4e60881867fcc8fbec1c
+run_name: speech_to_text
+run_uuid: b493b6a4b86c4e60881867fcc8fbec1c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729187374189
+status: 3
+tags: []
+user_id: Mohamed
