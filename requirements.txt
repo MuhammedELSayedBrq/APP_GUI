@@ -1,3 +1,3 @@
-streamlit
-azure-cognitiveservices-speech
-pyaudio
+streamlit==1.39.0
+azure-cognitiveservices-speech==1.41.1
+PyAudio==0.2.14
