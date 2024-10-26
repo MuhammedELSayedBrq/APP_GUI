@@ -42,7 +42,7 @@ def recognize_speech(audio_file):
 
 # Streamlit UI layout
 st.title("Azure Speech Translation with Streamlit")
-st.write("Upload a WAV audio file, and it will be translated to your desired language.")
+st.write("Upload a English WAV audio file, and it will be translated to Arabic.")
 
 # File upload
 uploaded_file = st.file_uploader("Choose a WAV file...", type=["wav"])
