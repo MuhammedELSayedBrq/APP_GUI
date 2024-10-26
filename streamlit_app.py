@@ -15,8 +15,7 @@ service_region = os.getenv("service_region")
 #speech_key = "22c6c3ae0a6646beb757bf58f383e21f"
 #service_region = "eastus"
 #sudo apt-get install portaudio19-dev python-pyaudio python3-pyaudio
-#pyaudio-helper
-#PyAudio==0.2.14  
+
   
 
 # Audio recording settings
