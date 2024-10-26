@@ -2,7 +2,6 @@ import os
 import streamlit as st
 import azure.cognitiveservices.speech as speechsdk
 import azure.cognitiveservices.speech.translation as translation_sdk
-import wave
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,32 +15,6 @@ def output_speech_recognition_result(translation_result):
         st.write(f"**RECOGNIZED:** Text={translation_result.text}")
         for language, translation in translation_result.translations.items():
             st.write(f"**TRANSLATED into '{language}':** {translation}")
-
-            # Synthesize the translated text to speech
-            speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
-            speech_config.speech_synthesis_voice_name = "ar-EG-ShakirNeural"
-
-            text = translation
-            speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
-
-            # Save the synthesized speech to a file
-            audio_filename = "synthesized_speech.wav"
-            result = speech_synthesizer.speak_text_async(text).get()
-
-            if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-                st.write(f"Speech synthesized for text [{text}]")
-                
-                # Save the audio output to a WAV file
-                with open(audio_filename, "wb") as audio_file:
-                    audio_file.write(result.audio_data)
-
-                # Add a button to play the audio
-                st.audio(audio_filename)  # Use st.audio to play the audio file
-            elif result.reason == speechsdk.ResultReason.Canceled:
-                cancellation_details = result.cancellation_details
-                st.write(f"Speech synthesis canceled: {cancellation_details.reason}")
-                if cancellation_details.reason == speechsdk.CancellationReason.Error:
-                    st.write(f"Error details: {cancellation_details.error_details}")
 
     elif translation_result.reason == translation_sdk.ResultReason.NoMatch:
         st.write("**NOMATCH:** Speech could not be recognized.")
