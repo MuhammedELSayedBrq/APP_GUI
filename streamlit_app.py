@@ -5,18 +5,21 @@ import azure.cognitiveservices.speech.translation as translation_sdk
 import pyaudio
 import wave
 
+from dotenv import load_dotenv
+
+load_dotenv()
+speech_key = os.getenv("speech_key")
+service_region = os.getenv("service_region")
 # Set up Azure Speech Translation configuration
 #speech_key = "22c6c3ae0a6646beb757bf58f383e21f"
 #service_region = "eastus"
 #sudo apt-get install portaudio19-dev python-pyaudio python3-pyaudio
  
   
-speech_key = "d5ad9234f70742c7a5021d2b7b308031"
-service_region = "eastus2"  # Use environment variable or secure storage in production
 
 # Audio recording settings
 class AudioRecorder:
-    def __init__(self, duration=30, sample_rate=16000, channels=1, chunk=1024, device=0):
+    def __init__(self, duration=5, sample_rate=16000, channels=1, chunk=1024, device=0):
         self.duration = duration
         self.sample_rate = sample_rate
         self.channels = channels
@@ -104,8 +107,8 @@ def output_speech_recognition_result(translation_result):
 # Function to recognize speech
 def recognize_speech():
     """Perform speech recognition and translation."""
-    audio_recorder = AudioRecorder(duration=30)  # Set your desired recording duration
-    audio_recorder.record()  # Record audio
+    audio_recorder = AudioRecorder(duration=5)
+    audio_recorder.record()
 
     # Use the recorded audio file for recognition
     audio_file = "recorded_audio.wav"
