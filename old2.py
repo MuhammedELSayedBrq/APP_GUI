@@ -1,9 +1,9 @@
+
 import os
 import streamlit as st
 import azure.cognitiveservices.speech as speechsdk
 import azure.cognitiveservices.speech.translation as translation_sdk
-from pydub import AudioSegment
-import tempfile
+import wave
 
 from dotenv import load_dotenv
 
@@ -61,21 +61,16 @@ def recognize_speech(audio_file):
 
 # Streamlit UI layout
 st.title("Azure Speech Translation with Streamlit")
-st.write("Upload an M4A audio file, and it will be translated to your desired language.")
+st.write("Upload a WAV audio file, and it will be translated to your desired language.")
 
 # File upload
-uploaded_file = st.file_uploader("Choose an M4A file...", type=["m4a"])
+uploaded_file = st.file_uploader("Choose a WAV file...", type=["wav"])
 
 if uploaded_file is not None:
-    # Convert M4A to WAV for processing
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".m4a") as temp_m4a:
-        temp_m4a.write(uploaded_file.getbuffer())
-        temp_wav_path = temp_m4a.name.replace(".m4a", ".wav")
+    # Save the uploaded file temporarily
+    with open("uploaded_audio.wav", "wb") as f:
+        f.write(uploaded_file.getbuffer())
     
-    # Convert the uploaded M4A file to WAV format
-    audio = AudioSegment.from_file(temp_m4a.name, format="m4a")
-    audio.export(temp_wav_path, format="wav")
-
     if st.button("Start Processing"):
-        # Run the function to recognize speech using the converted WAV file
-        recognize_speech(temp_wav_path)
+        # Run the function to recognize speech using the uploaded file
+        recognize_speech("uploaded_audio.wav")
