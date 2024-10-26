@@ -10,11 +10,13 @@ from dotenv import load_dotenv
 load_dotenv()
 speech_key = os.getenv("speech_key")
 service_region = os.getenv("service_region")
+
 # Set up Azure Speech Translation configuration
 #speech_key = "22c6c3ae0a6646beb757bf58f383e21f"
 #service_region = "eastus"
 #sudo apt-get install portaudio19-dev python-pyaudio python3-pyaudio
- 
+#pyaudio-helper
+#PyAudio==0.2.14  
   
 
 # Audio recording settings
